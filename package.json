@@ -1,0 +1,19 @@
+{
+  "name": "Shopping-Cart",
+  "version": "0.0.1",
+  "description": "Real time Shoping Cart",
+  "main": "index.js",
+  "scripts": {
+    "serve": "node server.js" ,
+    "dev": "nodemon server.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
