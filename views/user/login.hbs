@@ -1,0 +1,94 @@
+<div class="container">
+  <div class="row justify-content-center">
+  <div class="col-md-5">
+   <div class="card">
+     <h2 class="card-title text-center">Please Log in</h2>
+      <div class="card-body py-md-4">
+       <form action="/login" method="POST" _lpchecked="1">
+        <div class="form-group">
+             <input type="email" class="form-control" id="email" name="Email" placeholder="Email">
+            </div>
+							
+		<div class="form-group">
+      <input type="password" class="form-control" name="Password" id="password" placeholder="password">
+   </div>
+   <div class="d-flex flex-row align-items-center justify-content-between">
+      <a href="/signup">Create Account?</a>
+                                <button type="submit" class="btn btn-primary">Log in</button>
+          </div>
+       </form>
+     </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+{{!-- CSS (style) --}}
+
+
+<style>
+	@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+
+body{
+  background: #fff;
+  font-family: 'PT Sans', sans-serif;
+}
+h2{
+  padding-top: 1.5rem;
+}
+a{
+  color: #333;
+}
+a:hover{
+  color: #333;
+  text-decoration: none;
+  letter-spacing: 3px;
+  background: none;
+transition: all 0.3s ease 0s;
+}
+}
+.card{
+  border: 0.40rem solid #f8f9fa;
+  top: 10%;
+}
+.form-control{
+  background-color: #f8f9fa;
+  padding: 20px;
+  padding: 25px 15px;
+  margin-bottom: 1.3rem;
+}
+
+.form-control:focus {
+
+    color: #000000;
+    background-color: #ffffff;
+    border: 3px solid #da5767;
+    outline: 0;
+    box-shadow: none;
+
+}
+
+.btn{
+  border: none;
+background: #404040;
+color: #ffffff !important;
+font-weight: 100;
+padding: 20px;
+text-transform: uppercase;
+border-radius: 6px;
+display: inline-block;
+transition: all 0.3s ease 0s;
+}
+.btn-primary:hover {
+
+    
+    color: #404040 !important;
+font-weight: 700 !important;
+letter-spacing: 3px;
+background: none;
+-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.3s ease 0s;
+}
+</style>
