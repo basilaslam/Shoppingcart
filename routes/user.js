@@ -3,7 +3,13 @@ var express = require('express');
 var router = express.Router();
 var productHelpers=require('../helpers/product-helpers')
 const userHelpers=require('../helpers/user-helpers')
-
+const verfyLogin = (req,res,next)=>{
+  if(req.session.loggedIn){
+    next()
+  }else{
+    res.redirect('/login')
+  }
+}
 
 
 /* GET home page. */
@@ -69,6 +75,12 @@ req.session.destroy()
 
 
 
+})
+
+
+router.get('/cart',verfyLogin,(req,res)=>{
+
+  res.render('user/cart')
 })
 
 

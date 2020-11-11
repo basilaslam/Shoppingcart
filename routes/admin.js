@@ -1,4 +1,6 @@
+const { response } = require('express');
 var express = require('express');
+const { Db } = require('mongodb');
 const productHelpers = require('../helpers/product-helpers');
 var router = express.Router();
 var productHelper=require('../helpers/product-helpers')
@@ -30,6 +32,17 @@ router.post('/add-product',(req,res)=>{
     res.render("admin/add-product")
 
   })
+})
+
+
+router.get('/delete-product/:id',(req,res)=>{
+
+  let proId = req.params.id
+
+  productHelpers.deleteProduct(proId).then((response)=>{
+    res.redirect('/admin')
+  })
+
 })
 
 module.exports = router;
