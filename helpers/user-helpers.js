@@ -31,6 +31,7 @@ const collections = require('../config/collections')
                         response.status = true
                         resolve(response)
                     }else{
+                        
                         console.log('Failed');
                         resolve({status:false})
                     }
@@ -39,6 +40,7 @@ const collections = require('../config/collections')
             }else{
                 resolve({status:false})
                 console.log('failed');
+
             }
         })
     }

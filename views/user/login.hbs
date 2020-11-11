@@ -5,7 +5,11 @@
      <h2 class="card-title text-center">Please Log in</h2>
       <div class="card-body py-md-4">
        <form action="/login" method="POST" _lpchecked="1">
+       {{#if loginErr}}
+      <p class="error" style="color: #da5767;">{{loginErr}}</p>
+       {{/if}}
         <div class="form-group">
+
              <input type="email" class="form-control" id="email" name="Email" placeholder="Email">
             </div>
 							

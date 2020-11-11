@@ -8,7 +8,7 @@ const userHelpers=require('../helpers/user-helpers')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  let user=req.session.user
+ let user=req.session.user
   console.log(user);
   productHelpers.getAllProducts().then((products)=>{
 
@@ -18,8 +18,15 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.get('/login',(re,res)=>{
-  res.render('user/login')
+router.get('/login',(req,res)=>{
+  
+  if(req.session.loggedIn){
+    res.redirect('/')
+  }else{
+
+  res.render('user/login',{"loginErr":req.session.loginErr})
+  req.session.loginErr=""
+}
 })
 
 router.get('/signup',(req,res)=>{
@@ -42,17 +49,26 @@ userHelpers.doLogin(req.body).then((response)=>{
     req.session.user = response.user
     res.redirect('/')
   }else{
+    req.session.loginErr="Invalid username or Password"
+
     res.redirect("/login")
   }
 
 
 
 })
+
 })
 
 router.get('/logout',(req,res)=>{
+
+
+
 req.session.destroy()
   res.redirect('/')
+
+
+
 })
 
 
