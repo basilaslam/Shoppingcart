@@ -21,7 +21,9 @@
       <td>{{this.Catogery}}</td>
       <td>{{this.Description}}</td>
       <td><img src="/product-images/{{this._id}}.jpg" style="width: 100px;height:100px;" alt="..."></td>
-      <td>  <a class="btn btn-primary" href="/admin/edit-product/">Edit</a><a class="btn btn-danger m-2" onclick="return confirm('Are you sure you want to delete this item?');" href="/admin/delete-product/{{this._id}}">Delete</a></td>
+      <td>
+      <a class="btn btn-primary" href="/admin/edit-product/{{this._id}}">Edit</a>
+      <a class="btn btn-danger m-2" onclick="return confirm('Are you sure you want to delete this item?');" href="/admin/delete-product/{{this._id}}">Delete</a></td>
     </tr>
     {{/each}}
   </tbody>
