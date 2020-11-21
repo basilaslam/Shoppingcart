@@ -1,15 +1,21 @@
+<style>
+  .button{
+    text-align: center;
+    letter-spacing: normal;
+  }
+</style>
 <section>
   <div class="container mt-5">
     <div class="row">
       {{#each products}}
       <div class="col-md-3 col-sm-6 p-3">
 
-        <div class="card" style="width: 15rem; height:23rem;">
+        <div class="card" style="width: 15rem; height:23rem; background-color:#a89797">
           <img src="/product-images/{{this._id}}.jpg" class="card-img-top" alt="..." style="height: 12rem;">
           <div class="card-body">
             <h5 class="card-title">{{this.Name}}</h5>
             <p class="card-text">{{this.Description}}</p>
-            <a href="#" class="btn btn-primary">Add to cart</a>
+            <button onclick="addToCart('{{this._id}}')" class="btn btn-primary">Add to cart</button>
           </div>
         </div>
 
@@ -20,3 +26,11 @@
     </div>
   </div>
 </section>
+
+
+    <style>
+  .btn{
+    letter-spacing: 0em;
+    text-transform: none;
+  }
+</style>
