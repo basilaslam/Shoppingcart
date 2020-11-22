@@ -47,24 +47,42 @@ var objectId = require('mongodb').ObjectID
         })
     },
     addToCart:(proId,userId)=>{
+        let proObj = {
+            item:objectId(proId),
+            quantity:1
+        }
         return new Promise(async (resolve,reject)=>{
 let userCart = await db.get().collection(collection.CART_COLLECTION).findOne({user:objectId(userId)})
 if(userCart){
+    let proExist = userCart.products.findIndex(product=> product.item == proId)
+    console.log(proExist);
+    if(proExist != -1){
+        db.get().collection(collection.CART_COLLECTION).updateOne({'products.item':objectId(proId)},
+        {
+            $inc:{'products.$.quantity':1}
+        }
+        ).then(()=>{
+            resolve()
+        })
+    }else{
+
+   
     db.get().collection(collection.CART_COLLECTION)
     .updateOne({user:objectId(userId)},
     {
-            $push:{products:objectId(proId)}
+            $push:{products:proObj}
 
-    }).then((response)=>{
+    }
+    ).then((response)=>{
         resolve()
     }
     )
-
+ }
 }else{
-    let cartobj = {user:objectId(userId),
-        products : [objectId(proId)]
+    let cartObj = {user:objectId(userId),
+        products : [proObj]
 }
-db.get().collection(collection.CART_COLLECTION).insertOne(cartobj).then((response)=>{
+db.get().collection(collection.CART_COLLECTION).insertOne(cartObj).then((response)=>{
 resolve()
 })
 }
@@ -75,23 +93,24 @@ return new Promise(async (resolve,reject)=>{
     {
         $match:{user:objectId(userId)}
     },
-    {
-        $lookup:{
-            from:collection.PRODUCT_COLLECTION,
-            let:{prodList:'$products'},
-            pipeline:[
-                {
-                    $match:{
-                        $expr:{
-                            $in:['$_id','$$prodList']
-                        }
-                    }
-                }
-            ],
-            as:'cartItems'
-        }
-    }
+    // {
+    //     $lookup:{
+    //         from:collection.PRODUCT_COLLECTION,
+    //         let:{prodList:'$products'},
+    //         pipeline:[
+    //             {
+    //                 $match:{
+    //                     $expr:{
+    //                         $in:['$_id','$$prodList']
+    //                     }
+    //                 }
+    //             }
+    //         ],
+    //         as:'cartItems'
+    //     }
+    // }
     ]).toArray()
+    console.log(cartItems);
 resolve(cartItems[0].cartItems)
 })
     },
