@@ -63,16 +63,18 @@
                     <div class="cart-item">
                       <div class="row d-flex align-items-center text-center">
                         <div class="col-5">
+                                              {{#each this.product}}
                           <div class="d-flex align-items-center"><a href="detail.html"><img class="cart-item-img" src="/product-images/{{this._id}}.jpg" alt="..."></a>
                             <div class="cart-title text-left"><a class="text-uppercase text-dark" href="detail.html"><strong>{{this.Name}}</strong></a><br><span class="text-muted text-sm">category: {{this.Category}}</span><br><span class="text-muted text-sm">Colour: {{this.Colour}}</span>
                             </div>
                           </div>
                         </div>
+                        {{/each}}
                         <div class="col-2">{{this.Price}}</div>
                         <div class="col-2">
                           <div class="d-flex align-items-center">
                             <div class="btn btn-items btn-items-decrease">-</div>
-                            <input class="form-control text-center input-items" type="text" value="4">
+                            <input class="form-control text-center input-items" type="text" value="{{this.quantity}}">
                             <div class="btn btn-items btn-items-increase">+</div>
                           </div>
                         </div>
